@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DamagedState : PlayerBaseState
+public class PlayerDamagedState : PlayerBaseState
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

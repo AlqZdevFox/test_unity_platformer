@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
@@ -20,6 +22,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         //By default, enter a concrete state, which in this case I think Idle makes the most sense, from there you can get to any other state
         currentState = IdleState;
+        //The parameter of EnterState "this" refers to the context, THIS Script, the PlayerStateManager.cs Script
         currentState.EnterState(this);
     }//EndOf Unity method Start
 

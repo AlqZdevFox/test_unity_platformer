@@ -43,7 +43,7 @@ public class PlayerStateManager : MonoBehaviour
         //Up above you see we start with Idle State, but the player moves, interacts and does stuff
         //Can't have much of a game if the player JUST idles, right?
         currentState = playerState; //set current state as the one passed as a parameter, whichever it may be
-        playerState.EnterState(this); //TODO: Get back to this in the video
+        playerState.EnterState(this); //Don't just say the currentState is that, ACTUALLY ENTER IT (and pass the context while you're at it)
     }//EndOf method SwitchState
 
     #endregion

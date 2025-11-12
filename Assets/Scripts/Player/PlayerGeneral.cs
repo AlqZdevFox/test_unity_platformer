@@ -1,20 +1,27 @@
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 
 public class PlayerGeneral : MonoBehaviour
 {
     #region Class Variables
     //We don't want the StateMachine in just any GameObject of the Scene, so we create them from our scripts
-    StateMachine StateMachine;
+    private StateMachine StateMachine;
     public StateMachine STATEMACHINE => StateMachine; //So we're basically using the StateMachine class Getter
 
     //Instantiate StateCollection
-    StateCollection States;
-    public StateCollection STATES => States; //And Getter them (they're private)
+    private StateCollection States;
+    public StateCollection STATES => States; //And Getter them (they're private) <- Redundant, I didn't specify the protection modifiers before writing that comment xd
+
+    //Instantiate the InputProcessor script/class
+    private InputProcessor InputProcessor;
+    public InputProcessor INPUTPROCESSOR => InputProcessor; //Getter it
+
+    private PlayerMovement PlayerMovement;
+    public PlayerMovement MOVEMENT => PlayerMovement;
 
     [Header("Components")] //Remember, Headers in Unity are used for organization purposes only, separating things into groups (visually)
     [SerializeField] Rigidbody Rigidbody;
+    [SerializeField] PlayerConfiguration PlayerConfiguration;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI CurrentState; //This meant to display the current State in-game, no need for Console Debug Logs
@@ -29,6 +36,12 @@ public class PlayerGeneral : MonoBehaviour
 
         //Create a new State Collection for this script
         States = new StateCollection(this, StateMachine); //We can pass a "this" since StateCollection's Constructor asks for a PlayerGeneral, and guess where we are XD
+
+        //Create a new Input Processor blablabla you know the drill
+        InputProcessor = new InputProcessor();
+
+        //Create new Player Movement
+        PlayerMovement = new PlayerMovement(Rigidbody, PlayerConfiguration);
     }//EndOf Unity method Awake
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
